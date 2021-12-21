@@ -17,7 +17,7 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "lambda_bucket" {
-  bucket        = "test-ci-1234eqweadgsdfg"
+  bucket        = "test-ci-1234eqweadg"
   acl           = "private"
   force_destroy = true
 }
