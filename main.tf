@@ -23,9 +23,9 @@ resource "aws_s3_bucket" "lambda_bucket" {
 }
 
 resource "aws_s3_bucket_object" "content" {
-for_each = fileset("content/", "*")
-bucket = aws_s3_bucket.lambda_bucket.id
-key = each.value
-source = "content/${each.value}"
-etag = filemd5("content/${each.value}")
+  for_each = fileset("content/", "*")
+  bucket   = aws_s3_bucket.lambda_bucket.id
+  key      = each.value
+  source   = "content/${each.value}"
+  etag     = filemd5("content/${each.value}")
 }
