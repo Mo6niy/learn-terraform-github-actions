@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: create env file
         run: |
-          run: echo "Hello $T2"
+          run: echo ${process.env.T2}
