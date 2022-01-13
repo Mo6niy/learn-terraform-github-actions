@@ -1,13 +1,15 @@
 name: "test-env"
 on:
-  workflow_dispatch:
-    inputs:
-      ENVIRONMENT:
-        type: choice
-        description: Environment
-        required: true
-        options:
-        - TEST_ENV
+    workflow_call:
+        inputs:
+            ENVIRONMENT:
+                required: true
+                type: string
+        # type: choice
+        # description: Environment
+        # required: true
+        # options:
+        # - TEST_ENV
 
 
 jobs:
