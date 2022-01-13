@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: create env file
         run: |
-          echo ${{ env.T2 }}
+          run: echo "Hello $T2"
