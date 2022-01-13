@@ -1,21 +1,21 @@
 name: "test-env"
-on: push
-    # workflow_call:
-    #   inputs:
-    #     ENVIRONMENT:
-    #       type: choice
-    #       description: Environment
-    #       default: 'TEST_ENV'
-    #       required: true
-    #       options:
-    #       - TEST_ENV
-
+on:
+  workflow_dispatch:
+    inputs:
+      ENVIRONMENT:
+        type: choice
+        description: Environment
+        default: 'TEST_ENV'
+        required: true
+        options:
+        - TEST_ENV
+        - TEST2_ENV
 
 jobs:
   test1:
     name: "test1"
     runs-on: ubuntu-latest
-    environment: TEST_ENV #${{ inputs.ENVIRONMENT }}
+    environment: ${{ inputs.ENVIRONMENT }}
     steps:
       - name: create env file
         run: |
