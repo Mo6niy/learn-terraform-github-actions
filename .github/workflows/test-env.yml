@@ -10,4 +10,5 @@ jobs:
     steps:
       - name: create env file
         run: |
-          run: echo ${process.env.T2}
+          env
+          echo ${process.env.T2}
