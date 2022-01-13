@@ -1,19 +1,23 @@
 name: "test-env"
 
 on:
-  push:
-  #   branches:
-  #     - main
   workflow_dispatch:
     inputs:
       ENVIRONMENT:
         type: choice
         description: Environment
-        default: 'TEST_ENV'
         required: true
         options:
         - TEST_ENV
         - TEST2_ENV
+      # ENVIRONMENT:
+      #   type: choice
+      #   description: Environment
+      #   default: 'TEST_ENV'
+      #   required: true
+      #   options:
+      #   - TEST_ENV
+      #   - TEST2_ENV
 
 jobs:
   test1:
