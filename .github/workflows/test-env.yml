@@ -1,0 +1,12 @@
+name: "test-env"
+on:
+  push:
+
+jobs:
+  test1:
+    name: "test1"
+    runs-on: ubuntu-latest
+    steps:
+      - name: create env file
+        run: |
+          echo "dfgtr"
