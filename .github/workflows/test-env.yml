@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: create env file
         run: |
-          echo "dfgtr"
+          echo ${{ env.T2 }}
