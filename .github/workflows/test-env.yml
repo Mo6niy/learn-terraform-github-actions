@@ -6,7 +6,7 @@ jobs:
   test1:
     name: "test1"
     runs-on: ubuntu-latest
-    environment: test-env
+    environment: TEST_ENV
     steps:
       - name: create env file
         run: |
