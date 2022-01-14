@@ -7,8 +7,8 @@ on:
         description: Environment
         required: true
         options:
-        - TEST_ENV
-        - TEST2_ENV
+        - development
+        - production
 
 
 jobs:
@@ -17,8 +17,35 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
     steps:
-      - name: create env file
+#       - name: create env file
+#         run: |
+#            echo secret1=${{ secrets.T2 }} >> .env1
+#            echo NODE_ENV=${{ secrets.NODE_ENV }} >> .env1
+#            cat .env1
+      - name: Create env file
         run: |
-           echo secret1=${{ secrets.T2 }} >> .env
-           echo NODE_ENV=${{ secrets.NODE_ENV }} >> .env
-           cat .env
+          cat << EOF > .env
+          ### Webpack dev server ###
+          CDH_QUICKSIGHT_PUBLIC_PATH=http://localhost:3001/
+          PORT=3001
+          DEV_SERVER_OPEN_BROWSER=false
+          
+          ### Env ###
+          NODE_ENV=${{ secrets.NODE_ENV }}
+          REACT_APP_ISOLATED_DEVELOPMENT=${{ secrets.REACT_APP_ISOLATED_DEVELOPMENT }}
+          
+          ### APIs (real and mocked) ###
+
+          # real API url
+          REACT_APP_CDH_QUICKSIGHT_API_URL=${{ secrets.REACT_APP_CDH_QUICKSIGHT_API_URL }}
+          
+          # mock API url (when run on localhost or deployed to AWS)
+          REACT_APP_CDH_QUICKSIGHT_MOCK_API_URL=${{ secrets.REACT_APP_CDH_QUICKSIGHT_MOCK_API_URL }}
+          
+          ### UI variables ###
+          REACT_APP_DASHBOARD_PARENT_ID=${{ secrets.REACT_APP_DASHBOARD_PARENT_ID }}
+          REACT_APP_UNDO_TIME_MS=${{ secrets.REACT_APP_UNDO_TIME_MS }}
+          
+          EOF
+      - name: check env file
+        run: cat .env
