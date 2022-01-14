@@ -1,11 +1,5 @@
 name: "test-env"
-on:
-  workflow_dispatch:
-    inputs:
-      ENVIRONMENT:
-        type: text
-        default: TEST_ENV
-        
+on: [workflow_dispatch]
 
 
 
@@ -25,7 +19,7 @@ jobs:
   test1:
     name: "test1"
     runs-on: ubuntu-latest
-    environment: ${{ inputs.ENVIRONMENT }}
+    environment: TEST_ENV #${{ inputs.ENVIRONMENT }}
     steps:
       - name: create env file
         run: |
