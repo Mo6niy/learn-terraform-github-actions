@@ -3,11 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       ENVIRONMENT:
-        type: choice
-        required: true
-        description: environment
-        options:
-        - TEST_ENV
+        type: text
         default: TEST_ENV
         
 
