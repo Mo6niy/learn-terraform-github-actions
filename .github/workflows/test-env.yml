@@ -15,7 +15,7 @@ jobs:
   test1:
     name: "test1"
     runs-on: ubuntu-latest
-    environment: ${{ inputs.ENVIRONMENT }}
+    environment: ${{ github.event.inputs.environment }}
     steps:
       - name: create env file
         run: |
