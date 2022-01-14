@@ -17,11 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
     steps:
-#       - name: create env file
-#         run: |
-#            echo secret1=${{ secrets.T2 }} >> .env1
-#            echo NODE_ENV=${{ secrets.NODE_ENV }} >> .env1
-#            cat .env1
       - name: Create env file
         run: |
           cat << EOF > .env
