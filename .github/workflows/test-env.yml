@@ -17,36 +17,39 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
     steps:
-#       - name: Create env file
-#         run: |
-#           cat << EOF > .env
-#           ### Webpack dev server ###
-#           CDH_QUICKSIGHT_PUBLIC_PATH=http://localhost:3001/
-#           PORT=3001
-#           DEV_SERVER_OPEN_BROWSER=false
+      - name: Create env file
+        run: |
+          cat << EOF > .env
+          ### Webpack dev server ###
+          CDH_QUICKSIGHT_PUBLIC_PATH=http://localhost:3001/
+          PORT=3001
+          DEV_SERVER_OPEN_BROWSER=false
           
-#           ### Env ###
-#           NODE_ENV=${{ secrets.NODE_ENV }}
-#           REACT_APP_ISOLATED_DEVELOPMENT=${{ secrets.REACT_APP_ISOLATED_DEVELOPMENT }}
+          ### Env ###
+          NODE_ENV=${{ secrets.NODE_ENV }}
+          REACT_APP_ISOLATED_DEVELOPMENT=${{ secrets.REACT_APP_ISOLATED_DEVELOPMENT }}
           
-#           ### APIs (real and mocked) ###
+          ### APIs (real and mocked) ###
 
-#           # real API url
-#           REACT_APP_CDH_QUICKSIGHT_API_URL=${{ secrets.REACT_APP_CDH_QUICKSIGHT_API_URL }}
+          # real API url
+          REACT_APP_CDH_QUICKSIGHT_API_URL=${{ secrets.REACT_APP_CDH_QUICKSIGHT_API_URL }}
           
-#           # mock API url (when run on localhost or deployed to AWS)
-#           REACT_APP_CDH_QUICKSIGHT_MOCK_API_URL=${{ secrets.REACT_APP_CDH_QUICKSIGHT_MOCK_API_URL }}
+          # mock API url (when run on localhost or deployed to AWS)
+          REACT_APP_CDH_QUICKSIGHT_MOCK_API_URL=${{ secrets.REACT_APP_CDH_QUICKSIGHT_MOCK_API_URL }}
           
-#           ### UI variables ###
-#           REACT_APP_DASHBOARD_PARENT_ID=${{ secrets.REACT_APP_DASHBOARD_PARENT_ID }}
-#           REACT_APP_UNDO_TIME_MS=${{ secrets.REACT_APP_UNDO_TIME_MS }}
+          ### UI variables ###
+          REACT_APP_DASHBOARD_PARENT_ID=${{ secrets.REACT_APP_DASHBOARD_PARENT_ID }}
+          REACT_APP_UNDO_TIME_MS=${{ secrets.REACT_APP_UNDO_TIME_MS }}
           
-#           EOF
+          EOF
           
-      - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_REACT_APP_UNDO_TIME_MS: ${{ secrets.REACT_APP_UNDO_TIME_MS }}
-          file_name: .env
+
       - name: check env file
         run: cat .env
+        
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: .env
+          retention-days: 5
