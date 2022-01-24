@@ -45,9 +45,7 @@ jobs:
           
       - name: Create env file2
         run: |
-          cat << EOF > .env
-          API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com"
-          API_KEY=${{ secrets.REACT_APP_UNDO_TIME_MS }}
-          EOF
+          echo API_KEY=${{ secrets.REACT_APP_UNDO_TIME_MS }} >> .env
+          cat .env
       - name: check env file
         run: cat .env
