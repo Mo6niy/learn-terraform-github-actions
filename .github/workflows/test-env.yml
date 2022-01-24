@@ -43,9 +43,10 @@ jobs:
           
 #           EOF
           
-      - name: Create env file2
-        run: |
-          echo API_KEY=${{ secrets.REACT_APP_UNDO_TIME_MS }} >> .env
-          cat .env
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          REACT_APP_UNDO_TIME_MS: ${{ secrets.REACT_APP_UNDO_TIME_MS }}
+          file_name: .env
       - name: check env file
         run: cat .env
